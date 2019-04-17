@@ -54,7 +54,7 @@ module.exports = function (app, passport, db) {
   });
   app.put('/save', (req, res) => {
     db.collection('documents')
-    .findOneAndUpdate({note: req.body.note, title: req.body.title }, {
+    .findOneAndUpdate({_id:"5cb77cc84beb178534c62c48" }, {
       $set: {
         note:req.body.note, 
         title:req.body.title

@@ -1,7 +1,4 @@
 
-//   document.getElementById("file").onchange = function() {
-//    document.getElementById("form").submit();
-// };
 var trash = document.getElementsByClassName("fa-trash");
 var save = document.getElementsByClassName("takeNote");
 
@@ -20,11 +17,9 @@ Array.from(trash).forEach(function(element) {
         },
         //puts  objects strings into a form that can be sent 
         body: JSON.stringify({
-            //proprty name is title
-          
+            //proprty name is title   
           'note': note,
           'title': title
-          
         })
       }).then(function (response) {
         window.location.reload()
@@ -37,7 +32,7 @@ Array.from(trash).forEach(function(element) {
       // const title = this.parentNode.innerText;
       const title= document.getElementById("title").value;
       const note = document.getElementById("text").value;
-
+      // const noteId = this.parentNode.parentNode.childNodes[3].value
       // const note = this.parentNode.childNode[2].childNode.innerText;
       console.log("this is the noteeeeeeee: ",note)
       console.log("this is the titleeeeeeee: ", title)
@@ -50,7 +45,8 @@ Array.from(trash).forEach(function(element) {
         body: JSON.stringify({
             //proprty name is title
           'note': note,
-          'title': title
+          'title': title,
+
         })
       }).then(function (response) {
         // window.location.reload()

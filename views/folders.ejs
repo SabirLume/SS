@@ -23,6 +23,7 @@
                     <span><%= documents[i].note %></span>
                     <span><i class="fas fa-pencil-alt"></i></span>
                     <span data-user="<%= documents[i].user %>"><i class="fas fa-trash"></i></span>
+                    <input class="object" value="<%= documents[i]._id %>" type="text">
                 </li>
             </a>
             <% } %>
