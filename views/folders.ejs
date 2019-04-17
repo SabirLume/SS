@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+</head>
+
+<body>
+    <section>
+        <ul class="foldersUl">
+            <% if (documents.length > 0) { %>
+            <% for(var i = 0; i < documents.length; i++) { %>
+            <a href="my-notes?noteId=<%= documents[i]._id %>">
+                <li class="documents">
+                    <span class="folderName"><%= documents[i].title %></span>
+                    <span><%= documents[i].note %></span>
+                    <span><i class="fas fa-pencil-alt"></i></span>
+                    <span data-user="<%= documents[i].user %>"><i class="fas fa-trash"></i></span>
+                </li>
+            </a>
+            <% } %>
+            <% } %>
+        </ul>
+    </section>
+    <section><a href="/new-note"><button class="btn btn-default footer">New Folder</button></a></section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    
+    
+</head>
+
+<nav>
+    <span><i class="fas fa-burn"></i></span>
+    <% if (notes.length > 0) { %>
+        <% for(var i = 0; i < notes.length; i++) { %>
+        <ul class="alert alert-danger" style="color:#FFF">
+            <li>
+                <%= notes[i].body %>
+                <%= notes[i].title %>
+            </li> 
+        </ul>
+        <% } %>
+    <% } %>
+ 
+    <h1>QUICK<span>SNAP</span></h1>
+</nav>
+<body>
+<section class = "text">
+    <form action=""><textarea name="" class ="boxsizingBorder"></textarea></form> 
+</section>
+
+<section class= "details left">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat deserunt aliquam voluptas temporibus eveniet sed sapiente quia ab? Doloribus, perferendis eum architecto voluptas at fugit magnam accusamus deleniti tempore impedit.</p>
+</section>
+<script src="main.js"></script>
+</body>
+</html>

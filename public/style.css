@@ -1,0 +1,285 @@
+*:focus {
+  outline: none;
+}
+html *{
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5rem;
+}
+body{
+  width: 100%;
+  margin: 0 auto;
+  font-weight: 100;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  word-wrap:break-word;
+  text-align: center;
+  font-style: normal;
+}
+
+nav{
+  font-size: .8rem;
+}
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+p{
+    margin: 0;
+    padding: 10%;
+}
+img{
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+.indexImage{
+  background-image: url("img/notes.jpg");
+  background-size: cover;
+  object-position: center;
+}
+.filter{
+  background-color: rgba(0, 0, 0, 0.411);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.indexLogin{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+ul{
+    float: right;
+    list-style: none;
+    padding: 0 0 0 0;
+}
+li{
+    display: inline-block;
+    
+}
+.foldersUl{
+  width: 100%
+}
+.documents{
+ 
+  border: none;
+  padding: 3% 0;
+  width: 100%;
+  
+}
+nav{
+    padding: 10px 0;
+    color: rgb(0, 0, 0);
+}
+h1{
+  padding-top:3%;
+}
+.quick{
+    color: rgb(0, 0, 0);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: .4rem;
+    text-indent: .4rem;
+    text-align: center;
+    line-height: 34rem;
+    margin: 0;
+    padding: 0;
+}
+.h1Index{
+  color:white;
+}
+.fa-burn{
+  display: block;
+  margin: 0;
+  padding: 3%;
+  color: rgb(0, 0, 0);
+  height: 10vh;
+}
+section .main{
+    border: solid 1px rgb(0, 0, 0);
+    border-left: none;
+    border-right:none;
+    float: left;  
+}
+.details{
+    width: 48%;
+    border: none;
+}
+/* Login & Sign Up CSS */
+.form-control{
+  padding-top: 15px;
+  border: none;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  width: 20%;
+  margin: 0 auto;
+  display: block;
+  background: transparent;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+
+}
+.form-control:focus{
+  background: rgba(230, 230, 230, 0.274);
+  border-radius: 3px;
+}
+.btn-default, .btn-lg, .fileUpload, button{
+  border-radius: 3px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  background-color: rgb(230, 230, 230);
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  border: none;
+  font-size: 1rem;
+  padding: 1%;
+}
+.btn-warning{
+  width: 20%;
+  margin-top: 15px;
+}
+.btnIndex{
+  border: 1px solid white;
+  color:white;
+  width:10%;
+  border:none;
+}
+.btn-default{
+  background: transparent;
+}
+.loginh1{
+  padding-top: 10%;
+  padding-bottom:10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+hr + p, p, a{
+  font-size: 1rem;
+  padding-top:0;
+}
+hr + p, p{
+  padding: 0;
+}
+hr{
+  visibility: hidden;
+}
+/* Profile EJS */
+.takeNote{
+  clear: both;
+}
+
+h1.profile{
+  width: 69%;
+  padding-top: 22px;
+  color: rgb(0, 0, 0);
+  float: left;
+} 
+
+input[type="file"] {
+  display: none;
+}
+.btnIndex:hover, label:hover, button:hover{
+  background: rgba(7, 99, 236, 0.63);
+}
+.documents:hover{
+  background: rgba(128, 128, 128, 0.082);
+}
+
+/* my-notes.ejs */
+.text{
+  width: 80%;
+  margin: 0 auto;
+}
+textarea{
+  font-size: .8rem;
+  border-bottom: 1px solid white;
+  resize: none;
+  background: transparent;
+  background: white;
+  border: none;
+  margin-top: 2vh;
+  width: 100%;
+  color: black;
+  min-height:80vh;
+  height:auto;
+
+}
+.notesPad{
+  padding-top:2vh;
+}
+.my-notes{
+  width: 80%;
+  border: none;
+}
+.fa-chevron-left{
+position:fixed;
+top:0;
+left:0;
+margin-top: 2%;
+margin-left: 2%;
+}
+/* folders page */
+.footer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  margin-bottom: 2%;
+  margin-left: 2%;
+ }
+ .footerRight{
+  position:fixed;
+  bottom:0;
+  right:0;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  font-weight:100;
+  color: #1ed21e;
+ }
+ .fa-trash{
+   color: rgba(75, 75, 75, 0.212);
+   position: absolute;
+   right:0;
+   margin-right: 10%;
+   font-size: 1rem;
+   padding-top:5px;
+ }
+ .fa-pencil-alt{
+  color: rgba(75, 75, 75, 0.212);
+  position: absolute;
+  right:0;
+  margin-right: 20%;
+  font-size: 1rem;
+  padding-top:5px;
+ }
+.fa-trash:hover{
+  color: red;
+}
+.fa-pencil-alt:hover{
+  color: #1ed21e;
+}
+.folderName + span{
+  display: block;
+  font-size: .8rem;
+  color: rgba(0, 0, 0, 0.541);
+}
+.folderName{
+  font-size: 1.2rem;
+}
+/* Media Queries  */
+
+@media only screen and (max-width: 650px){
+  .details{
+      width: 100%;
+  }
+}    
+@media (min-width: 651px) and (max-width: 882px){
+   .spaceBackground p{
+       line-height: 170px;
+   }
+}
+@media (min-width: 883px) and (max-width: 1138px){
+
+}

@@ -1,0 +1,42 @@
+
+.fa-burn{
+    color: white;
+    padding-bottom: 1%;
+}
+nav{
+    background: none;
+    
+}
+.text{
+    width: 80%;
+    margin: 0 auto;
+}
+textarea{
+    font-size: .8rem;
+    border-bottom: 1px solid white;
+    resize: none;
+    background: transparent;
+    border: none;
+    /* background: rgba(255, 255, 255, 0.932); */
+    margin-top: 2vh;
+    width: 100%;
+    color: white;
+    min-height:200px;
+    height:auto;
+}
+
+/* Media Queries  */
+
+@media only screen and (max-width: 650px){
+    .details{
+        width: 100%;
+    }
+ }    
+ @media (min-width: 651px) and (max-width: 882px){
+     .spaceBackground p{
+         line-height: 170px;
+     }
+ }
+ @media (min-width: 883px) and (max-width: 1138px){
+ 
+ }

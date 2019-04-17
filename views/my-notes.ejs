@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+
+</head>
+
+<nav>
+    <a href="/folders"><span><i class="fas fa-chevron-left"></i></span></a>
+</nav>
+
+<body>
+
+
+    <div class="notesPad">
+        <form action="/my-notes" method="POST">
+            <input type="text" name="title" value="<%= result[0].title %>" placeholder="Title" class="my-notes" id="title" >
+                
+            </input>
+            <section class="text">
+                <textarea name="note" id="text" placeholder="Notes starts here...">
+                    <%= result[0].note %>
+                </textarea>
+            </section>
+            <a href="/folders"></a><span></span></a>
+            <button type="button" class="takeNote footerRight">Save</button>
+        </form>
+    </div>
+    <form action="/fileUpload" enctype="multipart/form-data" method="post" id="form">
+        <label class="fileUpload footer">
+            Choose File
+            <input type="file" name="file-to-upload" accept="image/*" id="file">
+        </label>
+    </form>
+
+
+
+    <section class="details left">
+
+    </section>
+    <script src="main.js"></script>
+</body>
+
+</html>
