@@ -23,14 +23,24 @@
 
     <div class="notesPad">
         <form action="/my-notes" method="POST">
-            <input type="text" name="title" value="<%= result[0].title %>" placeholder="Title" class="my-notes" id="title" >
-                
-            </input>
+            <% if (locals.result) { %>
+                <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="my-notes" id="title" >
+                       
             <section class="text">
                 <textarea name="note" id="text" placeholder="Notes starts here...">
-                    <%= result[0].note %>
+                    <%= result.note %>
                 </textarea>
             </section>
+            <% } else { %>
+                <input type="text" name="title" value="" placeholder="Title" class="my-notes" id="title" >
+                       
+            <section class="text">
+                <textarea name="note" id="text" placeholder="Notes starts here...">
+                
+                </textarea>
+            </section>
+            <% } %>
+
             <a href="/folders"></a><span></span></a>
             <button type="button" class="takeNote footerRight">Save</button>
         </form>

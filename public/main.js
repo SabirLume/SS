@@ -27,15 +27,18 @@ Array.from(trash).forEach(function(element) {
     });
   });
 
-  Array.from(save).forEach(function(element) {
+Array.from(save).forEach(function(element) {
     element.addEventListener('click', function(){
       // const title = this.parentNode.innerText;
       const title= document.getElementById("title").value;
       const note = document.getElementById("text").value;
+      const urlParams = new URLSearchParams(window.location.search);
+      const qParam = urlParams.get('noteId')
+
       // const noteId = this.parentNode.parentNode.childNodes[3].value
       // const note = this.parentNode.childNode[2].childNode.innerText;
-      console.log("this is the noteeeeeeee: ",note)
-      console.log("this is the titleeeeeeee: ", title)
+      //console.log("this is the noteeeeeeee: ",note)
+      //console.log("this is the titleeeeeeee: ", title)
       fetch('save', {
         method: 'put',
         headers: {
@@ -46,6 +49,7 @@ Array.from(trash).forEach(function(element) {
             //proprty name is title
           'note': note,
           'title': title,
+          'qParam': qParam
 
         })
       }).then(function (response) {
