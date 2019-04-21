@@ -27,17 +27,13 @@
                 <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="my-notes" id="title" >
                        
             <section class="text">
-                <textarea name="note" id="text" placeholder="Notes starts here...">
-                    <%= result.note %>
-                </textarea>
+                <textarea name="note" id="text" placeholder="Notes starts here..."><%= result.note %></textarea><br />
             </section>
             <% } else { %>
                 <input type="text" name="title" value="" placeholder="Title" class="my-notes" id="title" >
                        
             <section class="text">
-                <textarea name="note" id="text" placeholder="Notes starts here...">
-                
-                </textarea>
+                <textarea name="note" id="text" placeholder="Notes starts here..."></textarea><br />
             </section>
             <% } %>
 

@@ -246,7 +246,7 @@ margin-left: 2%;
    font-size: 1rem;
    padding-top:5px;
  }
- .fa-pencil-alt{
+ .fa-star{
   color: rgba(75, 75, 75, 0.212);
   position: absolute;
   right:0;
@@ -257,11 +257,13 @@ margin-left: 2%;
 .fa-trash:hover{
   color: red;
 }
-.fa-pencil-alt:hover{
-  color: #1ed21e;
+.fa-star:hover{
+  color: gold;
+}
+.star{
+  color: gold;
 }
 .folderName + span{
-  display: block;
   font-size: .8rem;
   color: rgba(0, 0, 0, 0.541);
 }
@@ -270,15 +272,21 @@ margin-left: 2%;
 }
 /* Media Queries  */
 
-@media only screen and (max-width: 650px){
+@media (min-width: 300px) and (max-width: 650px){
   .details{
       width: 100%;
+  }
+  .form-control{
+    width:60%;
   }
 }    
 @media (min-width: 651px) and (max-width: 882px){
    .spaceBackground p{
        line-height: 170px;
    }
+   .form-control{
+    width:40%;
+  }
 }
 @media (min-width: 883px) and (max-width: 1138px){
 
