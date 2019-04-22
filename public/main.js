@@ -1,15 +1,13 @@
 var trash = document.getElementsByClassName("fas fa-trash");
 var save = document.getElementsByClassName("takeNote");
 var star = document.getElementsByClassName("fa-star");
-
+var moon = document.getElementsByClassName("fa-moon")
 Array.from(trash).forEach(function(element) {
     element.addEventListener('click', function(){
-      const note = this.parentNode.parentNode.childNodes[3].innerText;
-      const title = this.parentNode.parentNode.childNodes[1].innerText;
+      // const note = this.parentNode.parentNode.childNodes[3].innerText;
+      const title = this.parentNode.parentNode.childNodes[1].innerText || null; 
       const user = this.getAttribute("data-user");
-      console.log("user: ", user)
-      console.log("this is the title:", title)
-      console.log("this is the note" , note)
+      console.log("this is the title:", title) 
       fetch('folders', {
         method: 'delete',
         headers: {
@@ -18,7 +16,7 @@ Array.from(trash).forEach(function(element) {
         //puts  objects strings into a form that can be sent 
         body: JSON.stringify({
             //proprty name is title   
-          'note': note,
+          // 'note': note,
           'title': title
         })
       }).then(function (response) {
@@ -61,18 +59,26 @@ Array.from(save).forEach(function(element) {
     element.addEventListener('click', function(){
  
     element.classList.toggle("star")
-    fetch('star',{
-      method: 'put',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'star': star,
-      })
+    // fetch('star',{
+    //   method: 'put',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     'star': star,
+    //   })
 
-    })
+    // })
    
  })
+
+})
+Array.from(moon).forEach(function(element) {
+  element.addEventListener('click', function(){
+  const body = document.querySelectorAll('.dark-mode')
+  body.classList.add("dark-body")
+ 
+})
 
 })
 

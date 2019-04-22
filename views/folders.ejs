@@ -17,13 +17,13 @@
         <ul class="foldersUl">
             <% if (documents.length > 0) { %>
             <% for(var i = 0; i < documents.length; i++) { %>
+                <a href="my-notes?noteId=<%= documents[i]._id %>">
                 <li class="documents" draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)">
-                    <a href="my-notes?noteId=<%= documents[i]._id %>">
                         <span class="folderName"><%= documents[i].title %></span>
-                    </a>
-                    <span><i class="fas fa-star" name= "star"></i></span>
-                    <span><i class="fas fa-trash"></i></span>
-                </li> 
+                        <span><i class="fas fa-star first-star" name= "star"></i></span>
+                        <span><i class="fas fa-trash"></i></span>
+                    </li> 
+                </a>
             <% } %>
             <% } %>
         </ul>

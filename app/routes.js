@@ -111,9 +111,9 @@ module.exports = function (app, passport, db) {
   })
 
     app.delete('/folders', (req, res) => {
-      console.log('Looking for message id', req.body.messageid)
+      console.log('Looking for message id', req.body.title)
       //  converting string into a special object mongo can use id string to id object
-      db.collection('documents').findOneAndDelete({ title: req.body.title, note: req.body.note }, (err, result) => {
+      db.collection('documents').findOneAndDelete({ title: req.body.title }, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
         console.log('Message Deleted')

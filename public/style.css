@@ -221,6 +221,37 @@ left:0;
 margin-top: 2%;
 margin-left: 2%;
 }
+.first-star{
+  position: absolute;
+  right:0;
+  margin-right: 20%;
+  padding-top:5px;
+}
+.second-star{
+  position:fixed;
+  top:0;
+  right:0;
+  margin-top: 2%;
+  margin-left: 2%;
+  padding-right: 10%;
+}
+.second-mood{
+  position:fixed;
+  top:0;
+  right:0;
+  margin-top: 2%;
+  margin-left: 2%;
+  padding-right: 5%;
+}
+.fa-moon{
+  color: rgba(75, 75, 75, 0.212);
+  font-size: 1.1rem;
+}
+.fa-star{
+ color: rgba(75, 75, 75, 0.212);
+ font-size: 1rem;
+}
+
 /* folders page */
 .footer{
   position:fixed;
@@ -228,8 +259,8 @@ margin-left: 2%;
   left:0;
   margin-bottom: 2%;
   margin-left: 2%;
- }
- .footerRight{
+}
+.footerRight{
   position:fixed;
   bottom:0;
   right:0;
@@ -237,44 +268,40 @@ margin-left: 2%;
   margin-right: 2%;
   font-weight:100;
   color: #1ed21e;
- }
- .fa-trash{
-   color: rgba(75, 75, 75, 0.212);
-   position: absolute;
-   right:0;
-   margin-right: 10%;
-   font-size: 1rem;
-   padding-top:5px;
- }
- .fa-star{
+}
+.fa-trash{
   color: rgba(75, 75, 75, 0.212);
   position: absolute;
   right:0;
-  margin-right: 20%;
-  font-size: 1rem;
-  padding-top:5px;
- }
-.fa-trash:hover{
-  color: red;
-}
-.fa-star:hover{
-  color: gold;
-}
-.star{
-  color: gold;
-}
-.folderName + span{
-  font-size: .8rem;
-  color: rgba(0, 0, 0, 0.541);
+  margin-right: 10%;
+   font-size: 1rem;
+   padding-top:5px;
+  }
+  .fa-trash:hover{
+    color: red;
+  }
+  .fa-star:hover{
+    color: gold;
+  }
+  .star{
+    color: gold;
+  }
+  .folderName + span{
+    font-size: .8rem;
+    color: rgba(0, 0, 0, 0.541);
 }
 .folderName{
   font-size: 1.2rem;
+}
+/* Dark Mode */
+.dark-body{
+  background: #2a2040;
 }
 /* Media Queries  */
 
 @media (min-width: 300px) and (max-width: 650px){
   .details{
-      width: 100%;
+    width: 100%;
   }
   .form-control{
     width:60%;
