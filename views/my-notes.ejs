@@ -15,9 +15,9 @@
 </head>
 
 <nav>
-    <a href="/folders"><span><i class="fas fa-chevron-left"></i></span></a>
-    <span><i class="fas  fa-star second-star" name= "star"></i></span>
-    <span><i class="fas fa-moon second-mood"></i></span>
+    <a href="/folders"><span><i class="dark-mode fas fa-chevron-left"></i></span></a>
+    <span><i class="dark-mode fas fa-star second-star" name= "star"></i></span>
+    <span><i class=" dark-mode fas fa-moon second-mood"></i></span>
 </nav>
 
 <body class="dark-mode">
@@ -26,13 +26,13 @@
     <div class="notesPad">
         <form action="/my-notes" method="POST">
             <% if (locals.result) { %>
-                <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="my-notes" id="title" >
+                <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="my-notes dark-mode" id="title" >
                        
             <section class="text">
                 <textarea class="dark-mode" name="note" id="text" placeholder="Notes starts here..."><%= result.note %></textarea><br />
             </section>
             <% } else { %>
-                <input type="text" name="title" value="" placeholder="Title" class="my-notes" id="title" >
+                <input type="text" name="title" value="" placeholder="Title" class="my-notes dark-mode" id="title" >
                        
             <section class="text">
                 <textarea class="dark-mode" name="note" id="text" placeholder="Notes starts here..."></textarea><br />
@@ -40,11 +40,11 @@
             <% } %>
 
             <a href="/folders"></a><span></span></a>
-            <button type="button" class="takeNote footerRight">Save</button>
+            <button type="button" class="takeNote footerRight dark-mode">Save</button>
         </form>
     </div>
     <form action="/fileUpload" enctype="multipart/form-data" method="post" id="form">
-        <label class="fileUpload footer">
+        <label class="fileUpload footer dark-mode">
             Choose File
             <input type="file" name="file-to-upload" accept="image/*" id="file">
         </label>
