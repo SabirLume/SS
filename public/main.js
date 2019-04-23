@@ -1,7 +1,9 @@
 var trash = document.getElementsByClassName("fas fa-trash");
 var save = document.getElementsByClassName("takeNote");
 var star = document.getElementsByClassName("fa-star");
-var moon = document.getElementsByClassName("fa-moon")
+var moon = document.getElementsByClassName("fa-moon");
+var starFav = star[0].id == 'true' ? true : false;
+var darkMode = moon[0].id == 'true' ? true : false;
 Array.from(trash).forEach(function (element) {
   element.addEventListener('click', function () {
     // const note = this.parentNode.parentNode.childNodes[3].innerText;
@@ -27,6 +29,9 @@ Array.from(trash).forEach(function (element) {
 
 Array.from(save).forEach(function (element) {
   element.addEventListener('click', function () {
+    console.log(starFav, darkMode)
+    console.log(star)
+    console.log(moon)
     // const title = this.parentNode.innerText;
     const title = document.getElementById("title").value;
     const note = document.getElementById("text").value;
@@ -47,7 +52,10 @@ Array.from(save).forEach(function (element) {
         //proprty name is title
         'note': note,
         'title': title,
-        'qParam': qParam
+        'qParam': qParam,
+        'darkMode': darkMode,
+        'starFav': starFav
+
       })
     }).then(function (response) {
       // window.location.reload()
@@ -57,19 +65,10 @@ Array.from(save).forEach(function (element) {
 
 Array.from(star).forEach(function (element) {
   element.addEventListener('click', function () {
-
-    element.classList.toggle("star")
-    // fetch('star',{
-    //   method: 'put',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     'star': star,
-    //   })
-
-    // })
-
+    element.classList.toggle("star");
+    // ! is syntaxatacital sugar allows me to switch from true and false (switch case)
+    starFav = !starFav;
+    console.log("this is the star favvvvvvvvv", starFav)
   })
 
 })
@@ -79,6 +78,8 @@ Array.from(moon).forEach(function (element) {
     body.forEach(function (body) {
       body.classList.toggle("dark-body")
     })
+    darkMode = !darkMode;
+    console.log(darkMode)
   })
 })
 

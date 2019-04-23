@@ -88,18 +88,23 @@ module.exports = function (app, passport, db) {
       console.log("my note: ",objId);
       db.collection('documents').find({ "_id": objId  }).toArray((err, result) => {
         //grabing the [0] index of result because we made objId into an array
+        console.log(result)
       res.render('my-notes.ejs',{result: result[0]})
     })
     });
 
   app.put('/save', (req, res) => {
     console.log("put: ", req.body.qParam)
+    const { note, title, darkMode, starFav, qParam} = req.body;
+    console.log(req.body)
     db.collection('documents')
     //finding that qParam we put in our main.js in our DB and updating that DOC in mongo with the information in $set
-    .findOneAndUpdate({ "_id": ObjectId(req.body.qParam)  }, {
+    .findOneAndUpdate({ "_id": ObjectId(qParam)  }, {
       $set: {
-        note:req.body.note, 
-        title:req.body.title
+        note,
+        title,
+        darkMode,
+        starFav 
       }
     }, {
       sort: {_id: -1},
@@ -124,7 +129,7 @@ module.exports = function (app, passport, db) {
 
 
 
-
+    
 
 
   // LOGOUT ==============================

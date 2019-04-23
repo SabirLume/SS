@@ -15,36 +15,36 @@
 </head>
 
 <nav>
-    <a href="/folders"><span><i class="dark-mode fas fa-chevron-left"></i></span></a>
-    <span><i class="dark-mode fas fa-star second-star" name= "star"></i></span>
-    <span><i class=" dark-mode fas fa-moon second-mood"></i></span>
+    <a href="/folders"><span><i class="<%= result.darkMode ? "dark-mode fas fa-chevron-left dark-body" : "dark-mode fas fa-chevron-left" %>"> </i></span></a>
+    <span><i id=<%= result.starFav ? result.starFav : false %> class="<%= result.starFav ? "fas fa-star second-star star" : "fas fa-star second-star" %>" name="star"></i></span>
+    <span><i id=<%= result.darkMode ? result.darkMode : false %> class="<%= result.darkMode ? "dark-mode fas fa-moon second-moon dark-body" : "dark-mode fas fa-moon second-moon"%>" ></i></span>
 </nav>
 
-<body class="dark-mode">
+<body class="<%= result.darkMode ? "dark-mode dark-body" : "dark-mode"%>">
 
 
     <div class="notesPad">
         <form action="/my-notes" method="POST">
             <% if (locals.result) { %>
-                <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="my-notes dark-mode" id="title" >
+                <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="<%= result.darkMode ? "my-notes dark-mode dark-body" : "my-notes dark-mode"%>" id="title" >
                        
             <section class="text">
-                <textarea class="dark-mode" name="note" id="text" placeholder="Notes starts here..."><%= result.note %></textarea><br />
+                <textarea class="<%= result.darkMode ? "dark-mode dark-body" : "dark-mode"%>" name="note" id="text" placeholder="Notes starts here..."><%= result.note %></textarea><br />
             </section>
             <% } else { %>
-                <input type="text" name="title" value="" placeholder="Title" class="my-notes dark-mode" id="title" >
+                <input type="text" name="title" value="" placeholder="Title" class="<%= result.darkMode ? "my-notes dark-mode dark-body" : "my-notes dark-mode"%>" id="title" >
                        
             <section class="text">
-                <textarea class="dark-mode" name="note" id="text" placeholder="Notes starts here..."></textarea><br />
+                <textarea class="<%= result.darkMode ? "dark-mode dark-body" : "dark-mode"%>" name="note" id="text" placeholder="Notes starts here..."></textarea><br />
             </section>
             <% } %>
 
             <a href="/folders"></a><span></span></a>
-            <button type="button" class="takeNote footerRight dark-mode">Save</button>
+            <button type="button" class="<%= result.darkMode ? "takeNote footerRight dark-mode dark-body" : "takeNote footerRight dark-mode" %>"> Save </button>
         </form>
     </div>
     <form action="/fileUpload" enctype="multipart/form-data" method="post" id="form">
-        <label class="fileUpload footer dark-mode">
+        <label class="<%= result.darkMode ? "fileUpload footer dark-mode dark-body" : "fileUpload footer dark-mode" %>" >
             Choose File
             <input type="file" name="file-to-upload" accept="image/*" id="file">
         </label>
