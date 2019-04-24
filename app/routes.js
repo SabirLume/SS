@@ -11,29 +11,55 @@ module.exports = function (app, passport, db) {
   
   // MULTER
   // It's very crucial that the file name matches the name attribute in your html
+  // app.put('/fileUpload', upload.single('file-to-upload'), (req, res) => {
+  //   const { image } = req.body;
+  //   console.log(image)
+  //   Tesseract.recognize(image)
+  //   .then(function(result){
+  //     console.log("translation------------",result)
+  //     db.collection('documents').findOneAndUpdate({ "_id": ObjectId('5cbe6bd77b5204b709a7e085')  }, {
+  //       $set: {
+  //        image: result.text
+  //       }
+  //     }, {
+  //       sort: {_id: -1},
+  //       upsert: true
+  //     }, (err, result) => {
+  //       if (err) return res.send(err)
+  //       res.send(result)
+  //     })
+
+  //   }).catch( err => {
+  //     console.log(err)
+  //   })
+  //   // console.log("imagee ----", image)
+  // })
   app.post('/fileUpload', upload.single('file-to-upload'), (req, res) => {
     console.log("file upload", req.file)
+    console.log(req.body.noteId)
+    var id =  req.body.noteId.trim()
+    console.log("the id", typeof id )
     // Recognize text of any language in any format
     //tesseract is grabbing the file from the path the image is being saved
     Tesseract.recognize(req.file.path)
     //figures what words are in the image
     .then(function (result) {
         console.log(result.text)
-        db.collection('documents').save({ user: req.session.passport.user, title: req.body.title, note: result.text }, (err, result) => {
-          if (err) return console.log(err)
-          console.log('saved to database')
-          res.redirect('/my-notes');
-        })
+        // db.collection('documents').save({ user: req.session.passport.user, title: req.body.title, note: result.text }, (err, result) => {
+        //   if (err) return console.log(err)
+        //   console.log('saved to database')
+        //   res.redirect('/my-notes');
+        // })
+        db.collection('documents').findOneAndUpdate({ "_id": ObjectId(id)  }, {
+                $set: {
+                 textFromImage: result.text
+                }
+              
       });
+      res.redirect('/my-notes?noteId=' + id)
     });
-    // app.post('/my-notes', (req, res) => {
-    //   db.collection('documents').save({ user: req.session.passport.user, title: req.body.title, note: req.body.note }, (err, result) => {
-    //     if (err) return console.log(err)
-    //     console.log('saved to database')
-    //     res.redirect('/my-notes')
-    //   })
-      
-    // })
+  });
+
     // show the home page (will also have our login links)
   app.get('/', function (req, res) {
     res.render('index.ejs');
@@ -88,7 +114,7 @@ module.exports = function (app, passport, db) {
       console.log("my note: ",objId);
       db.collection('documents').find({ "_id": objId  }).toArray((err, result) => {
         //grabing the [0] index of result because we made objId into an array
-        console.log(result)
+        console.log("result", result)
       res.render('my-notes.ejs',{result: result[0]})
     })
     });

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Notes</title>
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -29,7 +29,8 @@
                 <input type="text" name="title" value="<%= result.title %>" placeholder="Title" class="<%= result.darkMode ? "my-notes dark-mode dark-body" : "my-notes dark-mode"%>" id="title" >
                        
             <section class="text">
-                <textarea class="<%= result.darkMode ? "dark-mode dark-body" : "dark-mode"%>" name="note" id="text" placeholder="Notes starts here..."><%= result.note %></textarea><br />
+                <textarea class="<%= result.darkMode ? "dark-mode dark-body" : "dark-mode"%>" name="note" id="text" placeholder="Notes starts here..."><%= result.note %> <%= result.textFromImage || '' %></textarea><br />
+                
             </section>
             <% } else { %>
                 <input type="text" name="title" value="" placeholder="Title" class="<%= result.darkMode ? "my-notes dark-mode dark-body" : "my-notes dark-mode"%>" id="title" >
@@ -40,6 +41,7 @@
             <% } %>
 
             <a href="/folders"></a><span></span></a>
+        
             <button type="button" class="<%= result.darkMode ? "takeNote footerRight dark-mode dark-body" : "takeNote footerRight dark-mode" %>"> Save </button>
         </form>
     </div>
@@ -47,10 +49,11 @@
         <label class="<%= result.darkMode ? "fileUpload footer dark-mode dark-body" : "fileUpload footer dark-mode" %>" >
             Choose File
             <input type="file" name="file-to-upload" accept="image/*" id="file">
+            <input type="text" name="noteId" id="noteId" value="  <%= result._id%>">
         </label>
     </form>
 
-
+  
 
     <section class="details left">
 
