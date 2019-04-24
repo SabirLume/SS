@@ -49,7 +49,7 @@
         <label class="<%= result.darkMode ? "fileUpload footer dark-mode dark-body" : "fileUpload footer dark-mode" %>" >
             Choose File
             <input type="file" name="file-to-upload" accept="image/*" id="file">
-            <input type="text" name="noteId" id="noteId" value="  <%= result._id%>">
+            <input type="text" hidden name="noteId" id="noteId" value="  <%= result._id%>">
         </label>
     </form>
 
