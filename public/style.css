@@ -288,7 +288,7 @@ margin-left: 2%;
     color: red;
   }
   .fa-star:hover{
-    color: gold;
+    /* color: gold; */
   }
   .star{
     color: gold;
@@ -313,6 +313,9 @@ margin-left: 2%;
   }
   .form-control{
     width:60%;
+  }
+  .second-star{
+    padding-right:15%;
   }
 }    
 @media (min-width: 651px) and (max-width: 882px){
