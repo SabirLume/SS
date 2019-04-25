@@ -1,3 +1,4 @@
+var moon = document.getElementsByClassName("fa-moon");
 document.getElementById("file").onchange = function() {
    document.getElementById("form").submit();
   // cosnt = filePath = document.getElementById("file").value
@@ -55,3 +56,16 @@ document.getElementById("file").onchange = function() {
 //     })
 //   });
 // });
+var darkMode = moon[0].id == 'true' ? true : false;
+
+
+Array.from(moon).forEach(function (element) {
+  element.addEventListener('click', function () {
+    const body = document.querySelectorAll('.dark-mode')
+    body.forEach(function (body) {
+      body.classList.toggle("dark-body")
+    })
+    darkMode = !darkMode;
+    console.log(darkMode)
+  })
+})

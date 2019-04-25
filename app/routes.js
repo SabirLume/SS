@@ -64,13 +64,19 @@ module.exports = function (app, passport, db) {
   app.get('/', function (req, res) {
     res.render('index.ejs');
   });
+
+
   // folders SECTION =========================
   app.get('/folders', isLoggedIn, function (req, res) {
     db.collection('documents').find({ user: req.session.passport.user }).toArray((err, result) => {
       if (err) return console.log(err)
+      console.log(result)
+      const favorites = result.filter((document) => document.starFav ).sort((a, b) => b.title - a.title)
+      const notFavorites = result.filter((document) => !document.starFav).sort((a, b) => b.title - a.title)
+      const sortedByFavorites = favorites.concat(notFavorites)
       res.render('folders.ejs', {
         //passing the array of objects into file to use it
-        documents: result
+        documents: sortedByFavorites
       })
     })
   });
@@ -94,9 +100,8 @@ module.exports = function (app, passport, db) {
     db.collection('documents').insertOne({user: req.session.passport.user,title: null, note: null})
     //this is a promise 
     //then asks for a function what to do when the promise is done  
-    .then(function(note){
-
-      const objId = note.ops[0]._id
+    .then(function({ops}){
+      const objId = ops[0]._id
       console.log("get note: ", objId)
       //whatever db.collection does wait for it then pass the information from the document into the function
       //redirect us to a my-notes page with the unique id
@@ -121,7 +126,7 @@ module.exports = function (app, passport, db) {
 
   app.put('/save', (req, res) => {
     console.log("put: ", req.body.qParam)
-    const { note, title, darkMode, starFav, qParam} = req.body;
+    const { note, title, darkMode, starFav, textFromImage, qParam} = req.body;
     console.log(req.body)
     db.collection('documents')
     //finding that qParam we put in our main.js in our DB and updating that DOC in mongo with the information in $set
@@ -130,7 +135,8 @@ module.exports = function (app, passport, db) {
         note,
         title,
         darkMode,
-        starFav 
+        starFav,
+        textFromImage 
       }
     }, {
       sort: {_id: -1},

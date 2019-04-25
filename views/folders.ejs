@@ -15,12 +15,12 @@
 <body>
     <section>
         <ul class="foldersUl">
-            <% if (documents.length > 0) { %>
+            <% if (documents.length > 0 && Array.isArray(documents)) { %>
             <% for(var i = 0; i < documents.length; i++) { %>
                 <a href="my-notes?noteId=<%= documents[i]._id %>">
-                <li class="documents" draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)">
+                <li class="documents">
                         <span class="folderName"><%= documents[i].title %></span>
-                        <span><i class="fas fa-star first-star" name= "star"></i></span>
+                        <span><i id=<%= documents[i].starFav ? documents[i].starFav : false %> class="<%= documents[i].starFav ? "fas fa-star first-star star" : "fas fa-star first-star" %>"></i></span>
                         <span><i class="fas fa-trash"></i></span>
                     </li> 
                 </a>
