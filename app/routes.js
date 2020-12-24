@@ -1,70 +1,30 @@
 let ObjectId = require('mongodb').ObjectId;
+
+
 module.exports = function (app, passport, db) {
   const multer = require('multer');
   const upload = multer({
     dest: 'uploads/' // this saves your file into a directory called "uploads"
   });
-
   var Tesseract = require('tesseract.js')
-  
-  // normal routes ===============================================================
-  
-  // MULTER
-  // It's very crucial that the file name matches the name attribute in your html
-  // app.put('/fileUpload', upload.single('file-to-upload'), (req, res) => {
-  //   const { image } = req.body;
-  //   console.log(image)
-  //   Tesseract.recognize(image)
-  //   .then(function(result){
-  //     console.log("translation------------",result)
-  //     db.collection('documents').findOneAndUpdate({ "_id": ObjectId('5cbe6bd77b5204b709a7e085')  }, {
-  //       $set: {
-  //        image: result.text
-  //       }
-  //     }, {
-  //       sort: {_id: -1},
-  //       upsert: true
-  //     }, (err, result) => {
-  //       if (err) return res.send(err)
-  //       res.send(result)
-  //     })
 
-  //   }).catch( err => {
-  //     console.log(err)
-  //   })
-  //   // console.log("imagee ----", image)
-  // })
+  // MULTER
   app.post('/fileUpload', upload.single('file-to-upload'), (req, res) => {
-    console.log("file upload", req.file)
-    console.log(req.body.noteId)
     var id =  req.body.noteId.trim()
-    console.log("the id", typeof id )
-    // Recognize text of any language in any format
-    //tesseract is grabbing the file from the path the image is being saved
-    Tesseract.recognize(req.file.path)
-    //figures what words are in the image
-    .then(function (result) {
-        console.log(result.text)
-        // db.collection('documents').save({ user: req.session.passport.user, title: req.body.title, note: result.text }, (err, result) => {
-        //   if (err) return console.log(err)
-        //   console.log('saved to database')
-        //   res.redirect('/my-notes');
-        // })
-        db.collection('documents').findOneAndUpdate({ "_id": ObjectId(id)  }, {
-                $set: {
-                 textFromImage: result.text
-                }
-              
-      });
+    // Tesseract translates image, then we save to the translated text to the DB
+    Tesseract.recognize(req.file.path).then(function (result) {
+      db.collection('documents').findOneAndUpdate(
+        { "_id": ObjectId(id)}, 
+        {$set: {textFromImage: result.text}}
+      );
       res.redirect('/my-notes?noteId=' + id)
     });
   });
 
-    // show the home page (will also have our login links)
+  // show the home page (will also have our login links)
   app.get('/', function (req, res) {
     res.render('index.ejs');
   });
-
 
   // folders SECTION =========================
   app.get('/folders', isLoggedIn, function (req, res) {
@@ -81,53 +41,40 @@ module.exports = function (app, passport, db) {
     })
   });
 
-
-  // sent the user to the db  
-  //askeed the db for inforamtion and got it back
-  //Twitter example -- when you see links to different websites on twitter they direct you to their server first
-  //then to the link so they can collect data on how many people click the link
-
   //we are using GET with a insertOne because we can only get an mongoDB id by creating a document . INSERTONE inserts a 
   // document into a collection. Now we  want to 
   //get the id from that new document and incorporate it into our my-notes route because we want our notes to have a
   //unique Id.
 
-
-  //why didn't we just use a post request to create the doc? because we would of already made the doc without 
+  //why didn't we just use a post request to create the doc? b/c we would have already made the doc without 
   //being able to grab the unique id and putting it into the url
-    app.get('/new-note', function (req, res) {
-
-    db.collection('documents').insertOne({user: req.session.passport.user,title: null, note: null})
-    //this is a promise 
-    //then asks for a function what to do when the promise is done  
-    .then(function({ops}){
-      const objId = ops[0]._id
-      console.log("get note: ", objId)
-      //whatever db.collection does wait for it then pass the information from the document into the function
-      //redirect us to a my-notes page with the unique id
-      res.redirect('/my-notes?noteId=' + objId)
-      }, () => {})
-     
-    });
+  app.get('/new-note', function (req, res) {
+  // TODO need a catch for this , and handle erors accordingly
+  db.collection('documents').insertOne({user: req.session.passport.user,title: null, note: null})
+  //this is a promise 
+  //then asks for a function what to do when the promise is done  
+  .then(function({ops}){
+    const objId = ops[0]._id
+    //whatever db.collection does wait for it then pass the information from the document into the function
+    //redirect us to a my-notes page with the unique id
+    res.redirect('/my-notes?noteId=' + objId)
+    }, () => {})
+  });
   
-    //this is the route where we go to when we already have a note and want to look it up.
-    app.get('/my-notes', function (req, res) {
-      // couldnn't  search mongo by id because they store it as a object. 
-      //find is giving every note that has the same id
-      // not using new becuase new was giving us another new hash different from the one we already have.
-      const objId = ObjectId(req.query.noteId)
-      console.log("my note: ",objId);
-      db.collection('documents').find({ "_id": objId  }).toArray((err, result) => {
-        //grabing the [0] index of result because we made objId into an array
-        console.log("result", result)
+  //this is the route where we go to when we already have a note and want to look it up.
+  app.get('/my-notes', function (req, res) {
+    // couldn't  search mongo by id because they store it as a object. 
+    //find is giving every note that has the same id
+    // not using new becuase new was giving us another new hash different from the one we already have.
+    const objId = ObjectId(req.query.noteId)
+    db.collection('documents').find({ "_id": objId  }).toArray((err, result) => {
       res.render('my-notes.ejs',{result: result[0]})
     })
-    });
+  });
 
   app.put('/save', (req, res) => {
-    console.log("put: ", req.body.qParam)
     const { note, title, darkMode, starFav, textFromImage, qParam} = req.body;
-    console.log(req.body)
+
     db.collection('documents')
     //finding that qParam we put in our main.js in our DB and updating that DOC in mongo with the information in $set
     .findOneAndUpdate({ "_id": ObjectId(qParam)  }, {
@@ -147,22 +94,13 @@ module.exports = function (app, passport, db) {
     })
   })
 
-    app.delete('/folders', (req, res) => {
-      console.log('Looking for message id', req.body.title)
-      //  converting string into a special object mongo can use id string to id object
-      db.collection('documents').findOneAndDelete({ title: req.body.title }, (err, result) => {
-        if (err) return res.send(500, err)
-        res.send('Message deleted!')
-        console.log('Message Deleted')
-        console.log(req.body.title, req.body.note)
-      })
+  app.delete('/folders', (req, res) => {
+    //  converting string into a special object mongo can use id string to id object
+    db.collection('documents').findOneAndDelete({ title: req.body.title }, (err, result) => {
+      if (err) return res.send(500, err)
+      res.send('Message deleted!')
     })
-
-
-
-
-    
-
+  })
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
@@ -170,11 +108,7 @@ module.exports = function (app, passport, db) {
     res.redirect('/');
   });
 
-
-  // =============================================================================
-  // AUTHENTICATE (FIRST LOGIN) ==================================================
-  // =============================================================================
-
+  // AUTHENTICATE (FIRST LOGIN)
   // locally --------------------------------
   // LOGIN ===============================
   // show the login form
